@@ -1,4 +1,4 @@
-from .image_utils import ShowImageInfo, AddTitleToAlbum, BfNote, Test, ToString
+from .image_utils import *
 
 # NODE_CLASS_MAPPINGS = {
 #      "ShowImageInfo": ShowImageInfo,
@@ -7,10 +7,19 @@ from .image_utils import ShowImageInfo, AddTitleToAlbum, BfNote, Test, ToString
 
 NODE_CLASS_MAPPINGS = {
     "ShowImageInfo": ShowImageInfo,
-    "AddTitleToAlbum": AddTitleToAlbum,
+    "AddTitleToImage": AddTitleToImage,
+    "TestImageTransport": TestImageTransport,
     "BfNote": BfNote, 
     "Test": Test,
-    "ToString": ToString
+    "ToString": ToString,
+    "PromptList2": PromptList2,
+    "PromptList5": PromptList5,
+    "ExpandPromot": ExpandPromot,
+    "ExpandPromotBatch": ExpandPromotBatch,
+    "Midjourney": Midjourney,
+    "MidjourneyBatch": MidjourneyBatch,
+    "ShowImageByUrl": ShowImageByUrl,
+    "ShowImageByUrlBatch": ShowImageByUrlBatch,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
