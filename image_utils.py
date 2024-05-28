@@ -366,7 +366,7 @@ class BfNote(Base):
     @classmethod
     def INPUT_TYPES(cls):
         filepath = os.path.join(my_dir, "workflow", "readme.md")
-        with open(filepath, "r") as file:
+        with open(filepath, "r", encoding="utf-8") as file:
             examples = file.read()
         return {
             "required": {

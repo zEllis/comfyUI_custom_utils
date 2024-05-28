@@ -77,6 +77,9 @@ Next, I will explain the steps to generate a prompt. This prompt can be used to 
 - Additional details: Scene details or character details, describing the content of the image details to make the image look fuller and more reasonable. This part is optional, and the overall harmony of the picture should be noted so as not to conflict with the theme.
 - Image quality: This part should always start with "(best quality, 4k, 8k, highres, masterpiece:1.2), ultra-detailed, (realistic, photorealistic, photo-realistic:1.37)," which are indicators of high quality. Other commonly used quality-improving tags include HDR, UHD, studio lighting, ultra-fine painting, sharp focus, physically-based rendering, extreme detail description, professional, vivid colors, bokeh, and you can add them according to the needs of the theme.
 - Artistic style: This part describes the style of the image. Adding the appropriate artistic style can enhance the effect of the generated image. Common artistic styles include portraits, landscape, horror, anime, sci-fi, photography, concept artists
+
+Your task is to output json, whose keys is "prompt", value is the whole prompt, only one response is fine.
+The following is the short idea I ask you, please output according to the above rules:
 """
 
 
@@ -112,7 +115,7 @@ class OpenAIClient(object):
 		choices = resp.get("choices", [])
 		if not choices:
 			# send_slack_alerts("get_ai_reply_error, ai_response_error, need check!!!")
-			print(f"open_ai_reply, no_choices, reply: {resp}")
+			print(f"open_ai_reply, no_choices, reply: {resp}, user_message: {user_message}")
 			return ""
 		content = choices[0].get("message", {}).get("content", "")
 		print(
