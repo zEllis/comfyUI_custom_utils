@@ -1,6 +1,6 @@
 {
-  "last_node_id": 9,
-  "last_link_id": 7,
+  "last_node_id": 13,
+  "last_link_id": 10,
   "nodes": [
     {
       "id": 2,
@@ -50,7 +50,7 @@
         104.3774185180664
       ],
       "flags": {},
-      "order": 2,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -86,28 +86,6 @@
       "locked": true
     },
     {
-      "id": 4,
-      "type": "MDImagineNote",
-      "pos": [
-        316,
-        -9
-      ],
-      "size": [
-        570.2255720658734,
-        127.790976784446
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "properties": {
-        "Node name for S&R": "MDImagineNote"
-      },
-      "widgets_values": [
-        "\n            image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张\n            aspect: 图像尺寸\n            chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100\n            stylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000\n            no:  强制去除图片中元素\n            niji: niji是一种动画风格模型, 是否启用该模型\n        "
-      ],
-      "locked": true
-    },
-    {
       "id": 3,
       "type": "MDImagine",
       "pos": [
@@ -115,11 +93,11 @@
         165
       ],
       "size": [
-        261.9861420718106,
-        287.14395696466613
+        261.98614501953125,
+        287.1439514160156
       ],
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [
         {
@@ -183,11 +161,11 @@
         609
       ],
       "size": [
-        235.0137515737988,
-        109.80249483723276
+        235.0137481689453,
+        109.80249786376953
       ],
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -196,7 +174,8 @@
           "link": 4,
           "widget": {
             "name": "text"
-          }
+          },
+          "label": "text"
         }
       ],
       "outputs": [
@@ -218,6 +197,54 @@
       "locked": true
     },
     {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [
+        590,
+        588
+      ],
+      "size": [
+        281.90887451171875,
+        305.1961975097656
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "locked": true
+    },
+    {
+      "id": 10,
+      "type": "MDImagineNote",
+      "pos": [
+        323,
+        -65
+      ],
+      "size": [
+        548.2813110351562,
+        176.19619750976562
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "MDImagineNote"
+      },
+      "widgets_values": [
+        "\n            image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张\n            aspect: 图像尺寸\n            chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100\n            stylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000\n            no:  强制去除图片中元素\n            niji: niji是一种动画风格模型, 是否启用该模型\n        "
+      ]
+    },
+    {
       "id": 9,
       "type": "ImageScale",
       "pos": [
@@ -225,11 +252,11 @@
         767
       ],
       "size": [
-        231.2190194274906,
+        231.21902465820312,
         130
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -244,7 +271,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            7
+            8
           ],
           "shape": 3,
           "label": "IMAGE",
@@ -263,59 +290,110 @@
       "locked": true
     },
     {
-      "id": 5,
-      "type": "PreviewImage",
-      "pos": [
-        590,
-        588
-      ],
-      "size": [
-        281.9088744140629,
-        305.1961836486819
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 3,
-          "label": "images"
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      },
-      "locked": true
-    },
-    {
       "id": 7,
       "type": "SaveImage",
       "pos": [
-        930,
-        76
+        943,
+        165
       ],
       "size": [
-        571.3656048583987,
-        771.8439611816407
+        571.3656005859375,
+        771.8439331054688
       ],
       "flags": {},
-      "order": 7,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 7,
+          "link": 10,
           "label": "images"
         }
       ],
       "properties": {},
       "widgets_values": [
         "ComfyUI_MD_single"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "LoadImageMask",
+      "pos": [
+        949,
+        -132
       ],
-      "locked": true
+      "size": [
+        288.0342877197261,
+        247.85165393066393
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            9
+          ],
+          "shape": 3,
+          "label": "MASK",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImageMask"
+      },
+      "widgets_values": [
+        "mask2.jpg",
+        "red",
+        "image"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "JoinImageWithAlpha",
+      "pos": [
+        1267,
+        -36
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 8,
+          "label": "image"
+        },
+        {
+          "name": "alpha",
+          "type": "MASK",
+          "link": 9,
+          "label": "alpha"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoinImageWithAlpha"
+      }
     }
   ],
   "links": [
@@ -360,8 +438,24 @@
       "IMAGE"
     ],
     [
-      7,
+      8,
       9,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      9,
+      12,
+      0,
+      13,
+      1,
+      "MASK"
+    ],
+    [
+      10,
+      13,
       0,
       7,
       0,
