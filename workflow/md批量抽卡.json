@@ -1574,38 +1574,6 @@
       "locked": true
     },
     {
-      "id": 206,
-      "type": "SaveImage",
-      "pos": [
-        -7455,
-        664
-      ],
-      "size": [
-        330,
-        270
-      ],
-      "flags": {
-        "collapsed": true
-      },
-      "order": 74,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 294,
-          "label": "images"
-        }
-      ],
-      "properties": {},
-      "widgets_values": [
-        "Cardsystem/%date:yyyy-MM-dd%"
-      ],
-      "color": "#222",
-      "bgcolor": "#000",
-      "locked": true
-    },
-    {
       "id": 181,
       "type": "SaveImage",
       "pos": [
@@ -2821,28 +2789,6 @@
       "locked": true
     },
     {
-      "id": 237,
-      "type": "MDImagineNote",
-      "pos": [
-        228,
-        969
-      ],
-      "size": [
-        653.3976152908701,
-        144.47825988265095
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "properties": {
-        "Node name for S&R": "MDImagineNote"
-      },
-      "widgets_values": [
-        "\n            image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张\n            aspect: 图像尺寸\n            chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100\n            stylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000\n            no:  强制去除图片中元素\n            niji: niji是一种动画风格模型, 是否启用该模型\n        "
-      ],
-      "locked": true
-    },
-    {
       "id": 221,
       "type": "PromptList5",
       "pos": [
@@ -2908,7 +2854,7 @@
         514.6981811523438
       ],
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -3279,7 +3225,7 @@
         630
       ],
       "flags": {},
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -3340,6 +3286,60 @@
       "properties": {
         "Node name for S&R": "JoinImageWithAlpha"
       },
+      "color": "#222",
+      "bgcolor": "#000",
+      "locked": true
+    },
+    {
+      "id": 237,
+      "type": "MDImagineNote",
+      "pos": [
+        228,
+        969
+      ],
+      "size": [
+        653.3976152908701,
+        144.47825988265095
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "MDImagineNote"
+      },
+      "widgets_values": [
+        "image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张\naspect: 图像尺寸\nchaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100\nstylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000\nno:  强制去除图片中元素\nniji: niji是一种动画风格模型, 是否启用该模型\n        "
+      ],
+      "locked": true
+    },
+    {
+      "id": 206,
+      "type": "SaveImage",
+      "pos": [
+        -7455,
+        664
+      ],
+      "size": [
+        330,
+        270
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 294,
+          "label": "images"
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "Cardsystem_md_batch/%date:yyyy-MM-dd%"
+      ],
       "color": "#222",
       "bgcolor": "#000",
       "locked": true

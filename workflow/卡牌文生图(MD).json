@@ -290,33 +290,6 @@
       "locked": true
     },
     {
-      "id": 7,
-      "type": "SaveImage",
-      "pos": [
-        943,
-        165
-      ],
-      "size": [
-        571.3656005859375,
-        771.8439331054688
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 10,
-          "label": "images"
-        }
-      ],
-      "properties": {},
-      "widgets_values": [
-        "ComfyUI_MD_single"
-      ]
-    },
-    {
       "id": 12,
       "type": "LoadImageMask",
       "pos": [
@@ -394,6 +367,33 @@
       "properties": {
         "Node name for S&R": "JoinImageWithAlpha"
       }
+    },
+    {
+      "id": 7,
+      "type": "SaveImage",
+      "pos": [
+        943,
+        165
+      ],
+      "size": [
+        571.3656005859375,
+        771.8439331054688
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 10,
+          "label": "images"
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "Cardsystem_md_single/%date:yyyy-MM-dd%"
+      ]
     }
   ],
   "links": [
