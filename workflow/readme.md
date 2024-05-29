@@ -51,6 +51,11 @@ prompt_list 是用来串联多个 PromptList2  或者  PromptList5
 输入
     prompt: 提示词 字符串
     image_index: 数字， 选择md 生成图像的第几张放大
+    aspect: 图像尺寸
+    chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少
+    stylize: 调节图片艺术化程度，越高越艺术，越低越匹配
+    no:  强制去除图片中元素
+    niji: niji是一种动画风格模型, 是否启用该模型
 输出：
     result_url: 字符串， 生成图片的url地址
     thumbnail： 图像， 缩略图

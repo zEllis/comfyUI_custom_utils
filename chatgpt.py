@@ -23,12 +23,6 @@ More specific synonyms often work better than general ones. For example, use pre
 • Artists: Van Gogh, Picasso, Dali, Paul Cézanne, Leonardo da Vinci, Botticelli, Rembrandt, Hayao Miyazaki, etc.
 • Art styles: Oriental landscape painting, Ukiyo-e, conceptual art, Bauhaus, Impressionism, Rococo, Surrealism, long exposure, etc.
 You can also use a comma, plus sign, or "and" to separate different subjects. For instance, to depict a light and a house, you should separate them. Otherwise, if you type "light house," Midjourney will show you a lighthouse.
-Midjourney prompts can also include parameters to change how an image generates. Common parameters include:
-1. --arThis parameter sets the screen's aspect ratio. Default is 1:1; --ar 16:9 for computer screens and --ar 9:16 for cell phone screens, The suggested setting is --ar 16:9.
-2. --vThis parameter specifies the Midjourney version. The suggested setting is --v 6 .
-3. --sThis parameter controls the artistic level of the image, with values from 0 to 1000. A higher value indicates a more artistic image, but the image will also deviate more from the actual effect described by the prompt. Lower values indicate that the effect of the image is closer to the description of the prompt, but less artistic. The suggested setting is --s 750.
-4. --styleThis parameter --style raw is used for photographic images.
-5. --qThis parameter defines the image detail. More detail is created with larger values. Default value is --q 1. Recommended setting is --q 1.
 With this knowledge, we'll now explore 20 examples of prompts:
 1. white cow inside pink flowers in style of national geographic photography
 2. Giraffee, tropical, Paul Klee style, surreal masterpiece, octane rendering, focus, colorful background, detailed, intricate details, rich colors

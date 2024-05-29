@@ -334,7 +334,7 @@ class ShowImageInfo(Base):
         pil_image = tensor_to_pil(image1)
         size = pil_image.size
         return_size = "{}*{}".format(size[0], size[1])
-        print(return_size, unique_id, extra_pnginfo)
+        # print(return_size, unique_id, extra_pnginfo)
         preview_images = PreviewImage().save_images(image[0])["ui"]["images"]
         if unique_id is not None and extra_pnginfo is not None:
             if not isinstance(extra_pnginfo, list):
@@ -665,12 +665,42 @@ class MDImagine(Base):
             "required": {
                 "prompt": ("STRING", {"default": "", "multiline": True}),
                 "image_index": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
+                "aspect": ("STRING", {"default": "1:1", "multiline": False}),
+                # "size": ("STRING", {"default": "", "multiline": False}),
+                "chaos": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "stylize": ("INT", {"default": 100, "min": 0, "max": 1000, "step": 1}),
+                # "style": (["raw", "random-32", "random-64", "random-128"],),
+                "no": ("STRING", {"default": "", "multiline": False}),
+                "niji": ([False, True],),
+                # "seed": ("INT", {"default": 0, "min": 0, "max": 4294967295, "step": 1}),
             },
             # "optional": {"prompt": ("STRING",)},
         }
+    
+    def pack_prompt(self, prompt, aspect, chaos, stylize, no, niji, seed=None):
+        if aspect:
+            prompt += f" --ar {aspect} "
+        if chaos:
+            prompt += f" --chaos {chaos} "
+        if stylize:
+            prompt += f" --s {stylize} "
+        # if style:
+        #     prompt += f" --style {style} "
+        if no:
+            prompt += f" --no {no} "
+        if niji:
+            prompt += f" --niji 6 "
+        else:
+            prompt += f" --v 6 "
 
-    def func(self, prompt, image_index):
+        # if seed:
+        #     prompt += f" --seed {seed} "
+        
+        return prompt
 
+    def func(self, prompt, image_index, aspect, chaos, stylize, no, niji):
+
+        prompt = self.pack_prompt(prompt, aspect, chaos, stylize, no, niji)
         url_results = midjouney_async.get_image(prompt, image_index, type="single")
         image_list = utils.image_url_to_tensor(url_results)
         thumbnail = image_list[0]
@@ -680,7 +710,7 @@ class MDImagine(Base):
 
 
 
-class MDImagineBatch(Base):
+class MDImagineBatch(MDImagine):
     # 使用midjourney 生成图像， 默认选第三张; 建议使用
     RETURN_TYPES = ("STRING", "IMAGE", "IMAGE")
     RETURN_NAMES = (
@@ -693,17 +723,25 @@ class MDImagineBatch(Base):
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "prompts": ("STRING", {"default": '["1girl"]', "multiline": True}),
+                "prompts": ("STRING", {"default": '["1girl"]', "multiline": True, "forceInput": True}),
                 "image_index": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
+                "aspect": ("STRING", {"default": "464:584", "multiline": False}),
+                # "size": ("STRING", {"default": "464px*584px", "multiline": False}),
+                "chaos": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "stylize": ("INT", {"default": 500, "min": 0, "max": 1000, "step": 1}),
+                # "style": (["raw", "random-32", "random-64", "random-128"],),
+                "no": ("STRING", {"default": "", "multiline": False}),
+                "niji": ([False, True],),
+                # "seed": ("INT", {"default": 0, "min": 0, "max": 4294967295, "step": 1}),
             },
         }
 
-    def func(self, prompts, image_index):
+    def func(self, prompts, image_index, aspect, chaos, stylize, no, niji):
         try:
             prompt_list = json.loads(prompts)
         except Exception as e:
             raise ValueError(f"Could not parse prompts to list: {prompts}")
-        prompt_list = [i for i in prompt_list if i]
+        prompt_list = [self.pack_prompt(i, aspect, chaos, stylize, no, niji) for i in prompt_list if i]
         url_results = midjouney_async.get_image(prompt_list, image_index, type="batch")
         thumbnail_list = utils.image_url_to_tensor(url_results[0])
         images = utils.image_url_to_tensor(url_results[1:])
