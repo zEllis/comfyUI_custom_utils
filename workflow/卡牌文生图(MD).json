@@ -1,0 +1,412 @@
+{
+  "last_node_id": 9,
+  "last_link_id": 7,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "TranslateTextNode",
+      "pos": [
+        316,
+        168
+      ],
+      "size": [
+        289.6300964355469,
+        125.94025421142578
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "label": "text",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TranslateTextNode"
+      },
+      "widgets_values": [
+        "auto",
+        "en",
+        "大老虎"
+      ],
+      "locked": true
+    },
+    {
+      "id": 1,
+      "type": "ExpandPromot",
+      "pos": [
+        314,
+        344
+      ],
+      "size": [
+        283.4679870605469,
+        104.3774185180664
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 1,
+          "widget": {
+            "name": "prompt"
+          },
+          "label": "prompt"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            2,
+            4
+          ],
+          "shape": 3,
+          "label": "STRING",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ExpandPromot"
+      },
+      "widgets_values": [
+        "MD",
+        "1girl"
+      ],
+      "locked": true
+    },
+    {
+      "id": 4,
+      "type": "MDImagineNote",
+      "pos": [
+        316,
+        -9
+      ],
+      "size": [
+        570.2255720658734,
+        127.790976784446
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "properties": {
+        "Node name for S&R": "MDImagineNote"
+      },
+      "widgets_values": [
+        "\n            image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张\n            aspect: 图像尺寸\n            chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100\n            stylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000\n            no:  强制去除图片中元素\n            niji: niji是一种动画风格模型, 是否启用该模型\n        "
+      ],
+      "locked": true
+    },
+    {
+      "id": 3,
+      "type": "MDImagine",
+      "pos": [
+        628,
+        165
+      ],
+      "size": [
+        261.9861420718106,
+        287.14395696466613
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 2,
+          "widget": {
+            "name": "prompt"
+          },
+          "label": "prompt"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result_url",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "result_url"
+        },
+        {
+          "name": "thumbnail",
+          "type": "IMAGE",
+          "links": [
+            3
+          ],
+          "shape": 3,
+          "label": "thumbnail",
+          "slot_index": 1
+        },
+        {
+          "name": "result_image",
+          "type": "IMAGE",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "label": "result_image",
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MDImagine"
+      },
+      "widgets_values": [
+        "",
+        1,
+        "464:584",
+        0,
+        100,
+        "",
+        false
+      ],
+      "locked": true
+    },
+    {
+      "id": 6,
+      "type": "ShowText|pysssss",
+      "pos": [
+        334,
+        609
+      ],
+      "size": [
+        235.0137515737988,
+        109.80249483723276
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 4,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null,
+          "shape": 6,
+          "label": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "majestic Bengal tiger, vibrant orange coat, deep green jungle background, photorealistic, high detail"
+      ],
+      "locked": true
+    },
+    {
+      "id": 9,
+      "type": "ImageScale",
+      "pos": [
+        332,
+        767
+      ],
+      "size": [
+        231.2190194274906,
+        130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 6,
+          "label": "image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            7
+          ],
+          "shape": 3,
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScale"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        464,
+        584,
+        "disabled"
+      ],
+      "locked": true
+    },
+    {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [
+        590,
+        588
+      ],
+      "size": [
+        281.9088744140629,
+        305.1961836486819
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3,
+          "label": "images"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "locked": true
+    },
+    {
+      "id": 7,
+      "type": "SaveImage",
+      "pos": [
+        930,
+        76
+      ],
+      "size": [
+        571.3656048583987,
+        771.8439611816407
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 7,
+          "label": "images"
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI_MD_single"
+      ],
+      "locked": true
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      1,
+      0,
+      3,
+      0,
+      "STRING"
+    ],
+    [
+      3,
+      3,
+      1,
+      5,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      1,
+      0,
+      6,
+      0,
+      "STRING"
+    ],
+    [
+      6,
+      3,
+      2,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      9,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "中间过程",
+      "bounding": [
+        302,
+        483,
+        604,
+        432
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": true
+    },
+    {
+      "title": "输入",
+      "bounding": [
+        300,
+        -146,
+        611,
+        616
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": true
+    },
+    {
+      "title": "卡牌文生图（MD）",
+      "bounding": [
+        240,
+        -292,
+        1311,
+        1270
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "locked": true
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
