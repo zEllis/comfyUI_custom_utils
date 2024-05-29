@@ -479,22 +479,22 @@ class PromptList5(Base):
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "prompt_1": ("STRING", {"multiline": True, "default": "prompt"}),
-                "prompt_2": ("STRING", {"multiline": True, "default": "prompt"}),
-                "prompt_3": ("STRING", {"multiline": True, "default": "prompt"}),
-                "prompt_4": ("STRING", {"multiline": True, "default": "prompt"}),
-                "prompt_5": ("STRING", {"multiline": True, "default": "prompt"}),
+                "prompt_1": ("STRING", {"multiline": True, "default": "prompt1"}),
+                "prompt_2": ("STRING", {"multiline": True, "default": "prompt2"}),
+                "prompt_3": ("STRING", {"multiline": True, "default": "prompt3"}),
+                "prompt_4": ("STRING", {"multiline": True, "default": "prompt4"}),
+                "prompt_5": ("STRING", {"multiline": True, "default": "prompt5"}),
                 "return_type": (["list", "dict"],),
             },
-            "optional": {"simple_prompt_list": ("SIMPLE_PROMPT_LIST",)},
+            "optional": {"prompt_list": ("PROMPT_LIST",)},
         }
 
     RETURN_TYPES = (
-        "SIMPLE_PROMPT_LIST",
+        "PROMPT_LIST",
         "STRING",
     )
     RETURN_NAMES = (
-        "simple_prompt_list",
+        "prompt_list",
         "json_results",
     )
 
@@ -506,15 +506,15 @@ class PromptList5(Base):
         prompt_4,
         prompt_5,
         return_type="list",
-        simple_prompt_list=None,
+        prompt_list=None,
     ):
 
         # Initialise the list
         prompts = list()
 
         # Extend the list for each prompt in connected stacks
-        if simple_prompt_list is not None:
-            prompts.extend([l for l in simple_prompt_list])
+        if prompt_list is not None:
+            prompts.extend([l for l in prompt_list])
 
         # Extend the list for each prompt in the stack
         if prompt_1 != "":
@@ -553,32 +553,32 @@ class PromptList2(Base):
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "prompt_1": ("STRING", {"multiline": True, "default": "prompt"}),
-                "prompt_2": ("STRING", {"multiline": True, "default": "prompt"}),
+                "prompt_1": ("STRING", {"multiline": True, "default": "prompt1"}),
+                "prompt_2": ("STRING", {"multiline": True, "default": "prompt2"}),
                 "return_type": (["list", "dict"],),
-                "optional": {"simple_prompt_list": ("SIMPLE_PROMPT_LIST",)},
             },
+            "optional": {"prompt_list": ("PROMPT_LIST",)},
            
             
         }
 
     RETURN_TYPES = (
-        "SIMPLE_PROMPT_LIST",
+        "PROMPT_LIST",
         "STRING",
     )
     RETURN_NAMES = (
-        "simple_prompt_list",
+        "prompt_list",
         "json_results",
     )
 
-    def func(self, prompt_1, prompt_2, simple_prompt_list=None, return_type="list"):
+    def func(self, prompt_1, prompt_2, prompt_list=None, return_type="list"):
 
         # Initialise the list
         prompts = list()
 
         # Extend the list for each prompt in connected stacks
-        if simple_prompt_list is not None:
-            prompts.extend([l for l in simple_prompt_list])
+        if prompt_list is not None:
+            prompts.extend([l for l in prompt_list])
 
         # Extend the list for each prompt in the stack
         if prompt_1 != "":
@@ -609,8 +609,9 @@ class ExpandPromot(Base):
         return {
             "required": {
                 "prompt_type": (["MD", "SD"],),
-                "prompt": ("STRING", {"default": "1girl"}),
+                "prompt": ("STRING", {"default": "1girl", "forceInput": True}),
             },
+            # "optional": {"prompt": ("STRING",)},
         }
 
     def func(self, prompt_type, prompt):
@@ -629,7 +630,7 @@ class ExpandPromotBatch(Base):
         return {
             "required": {
                 "prompt_type": (["MD", "SD"],),
-                "prompt_list_json": ("STRING", {"default": ""}),
+                "prompt_list_json": ("STRING", {"default": "", "forceInput": True}),
             },
         }
 
@@ -649,11 +650,11 @@ class ExpandPromotBatch(Base):
         return (json.dumps(rich_prompt_list, ensure_ascii=False),)
 
 
-class Midjourney(Base):
+class MDImagine(Base):
     # 使用midjourney 生成图像， 默认选第三张; 建议使用
     RETURN_TYPES = ("STRING", "IMAGE", "IMAGE")
     RETURN_NAMES = (
-        "expand_prompt",
+        "result_url",
         "thumbnail",
         "result_image",
     )
@@ -679,11 +680,11 @@ class Midjourney(Base):
 
 
 
-class MidjourneyBatch(Base):
+class MDImagineBatch(Base):
     # 使用midjourney 生成图像， 默认选第三张; 建议使用
     RETURN_TYPES = ("STRING", "IMAGE", "IMAGE")
     RETURN_NAMES = (
-        "expand_prompt",
+        "results_url",
         "thumbnails",
         "result_images",
     )

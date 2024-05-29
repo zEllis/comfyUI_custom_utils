@@ -16,14 +16,15 @@ NODE_CLASS_MAPPINGS = {
     "PromptList5": PromptList5,
     "ExpandPromot": ExpandPromot,
     "ExpandPromotBatch": ExpandPromotBatch,
-    "Midjourney": Midjourney,
-    "MidjourneyBatch": MidjourneyBatch,
+    "MDImagine": MDImagine,
+    "MDImagineBatch": MDImagineBatch,
     "ShowImageByUrl": ShowImageByUrl,
     "ShowImageByUrlBatch": ShowImageByUrlBatch,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "ShowImageInfo|bf_utils": "bf_utils|image_info",
+    "MDImagineyBatch": "MDImaginey_batch",
 }
 
 
