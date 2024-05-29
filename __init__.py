@@ -8,9 +8,10 @@ from .image_utils import *
 NODE_CLASS_MAPPINGS = {
     "ShowImageInfo": ShowImageInfo,
     "AddTitleToImage": AddTitleToImage,
-    "TestImageTransport": TestImageTransport,
+    # "TestImageTransport": TestImageTransport,
     "BfNote": BfNote, 
-    "Test": Test,
+    "MDImagineNote": MDImagineNote, 
+    # "Test": Test,
     "ToString": ToString,
     "PromptList2": PromptList2,
     "PromptList5": PromptList5,
