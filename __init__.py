@@ -1,4 +1,7 @@
 from .image_utils import *
+from .note import *
+from .base_node import *
+from .image import *
 
 # NODE_CLASS_MAPPINGS = {
 #      "ShowImageInfo": ShowImageInfo,
@@ -9,10 +12,9 @@ NODE_CLASS_MAPPINGS = {
     "ShowImageInfo": ShowImageInfo,
     "AddTitleToImage": AddTitleToImage,
     # "TestImageTransport": TestImageTransport,
-    "BfNote": BfNote, 
+    "BfImageNote": BfImageNote, 
     "MDImagineNote": MDImagineNote, 
     # "Test": Test,
-    "ToString": ToString,
     "PromptList2": PromptList2,
     "PromptList5": PromptList5,
     "ExpandPromot": ExpandPromot,
@@ -21,6 +23,15 @@ NODE_CLASS_MAPPINGS = {
     "MDImagineBatch": MDImagineBatch,
     "ShowImageByUrl": ShowImageByUrl,
     "ShowImageByUrlBatch": ShowImageByUrlBatch,
+
+    # tools
+    "Text": Text,
+    "ToString": ToString,
+
+    # image
+    "bfSaveImage": bfSaveImage,
+    "bfImageScale": bfImageScale,
+    "bfJoinImageWithAlpha": bfJoinImageWithAlpha,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {

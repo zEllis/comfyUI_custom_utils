@@ -189,7 +189,7 @@ class Mdjourney:
     def get_image(self, prompt, image_index=None, thumbnail=False, type="single"):
 
         if type == "single":
-            return asyncio.run(self._get_image_batch_index(prompt, image_index_list=[image_index], thumbnail=thumbnail))
+            return asyncio.run(self._get_image_batch_index(prompt, image_index_list=[1,2,3,4], thumbnail=thumbnail))
         elif type == "batch":
             return asyncio.run(self._get_image_batch(prompt_list=prompt, image_index=image_index, thumbnail=thumbnail))
         else:

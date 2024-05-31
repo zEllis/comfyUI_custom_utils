@@ -2,13 +2,19 @@ import aiohttp
 import asyncio
 import json
 import torch
+import numpy as np
 import comfy.utils
+from comfy.cli_args import args
+from folder_paths import output_directory, get_save_image_path
+
 from .utils import tensor_to_pil, pil_to_tensor, get_text_size
+from .base_node import Base, ANY
 from PIL import Image, ImageFont, ImageDraw, ImageFilter, ImageChops
+from PIL.PngImagePlugin import PngInfo
+
 from . import utils
 from .chatgpt import open_ai_client, open_ai_client_async
 from .md_async import midjouney_async
-from .components.fields import Field, ANY
 import sys
 import os
 import logging
@@ -362,68 +368,6 @@ class ShowImageInfo(Base):
         }
 
 
-class BfNote(Base):
-    @classmethod
-    def INPUT_TYPES(cls):
-        filepath = os.path.join(my_dir, "workflow", "readme.md")
-        with open(filepath, "r", encoding="utf-8") as file:
-            examples = file.read()
-        return {
-            "required": {
-                "readme": ("STRING", {"default": examples, "multiline": True}),
-            },
-        }
-
-    RETURN_TYPES = ()
-
-
-class MDImagineNote(Base):
-    @classmethod
-    def INPUT_TYPES(cls):
-        note = """image_index: 数字， 选择md 生成图像的第几张放大， md默认生成4张图， 默认选择第一张
-aspect: 图像尺寸
-chaos: 控制图片生成混乱度，越高图片越多样，越低图片变化越少, 默认0， 取值0-100
-stylize: 调节图片艺术化程度，越高越艺术，越低越匹配， 默认500， 取值 0-1000
-no:  强制去除图片中元素
-niji: niji是一种动画风格模型, 是否启用该模型
-"""
-        return {
-            "required": {
-                "readme": ("STRING", {"default": note, "multiline": True}),
-            },
-        }
-
-    RETURN_TYPES = ()
-
-
-class ToString(Base):
-
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "ANY": Field.any(),
-            },
-        }
-
-    RETURN_TYPES = (
-        ANY,
-        "STRING",
-    )
-    RETURN_NAMES = (
-        "SAME AS INPUT",
-        "STRING",
-    )
-    OUTPUT_NODE = True
-    FUNCTION = "func"
-
-    def func(self, ANY=None):
-        out = ANY
-        try:
-            out = str(out)
-        except Exception as e:
-            out = str(e)
-        return {"ui": {"text": [out]}, "result": (ANY, out)}
 
 class TestImageTransport(Base):
     RETURN_TYPES = ("IMAGE",)
@@ -671,11 +615,12 @@ class ExpandPromotBatch(Base):
 
 class MDImagine(Base):
     # 使用midjourney 生成图像， 默认选第三张; 建议使用
-    RETURN_TYPES = ("STRING", "IMAGE", "IMAGE")
+    RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE", "IMAGE")
     RETURN_NAMES = (
-        "result_url",
-        "thumbnail",
-        "result_image",
+        "img1",
+        "img2",
+        "img3",
+        "img4",
     )
 
     @classmethod
@@ -683,7 +628,7 @@ class MDImagine(Base):
         return {
             "required": {
                 "prompt": ("STRING", {"default": "", "multiline": True}),
-                "image_index": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
+                # "image_index": ("INT", {"default": 1, "min": 1, "max": 4, "step": 1}),
                 "aspect": ("STRING", {"default": "1:1", "multiline": False}),
                 # "size": ("STRING", {"default": "", "multiline": False}),
                 "chaos": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
@@ -717,15 +662,22 @@ class MDImagine(Base):
         
         return prompt
 
-    def func(self, prompt, image_index, aspect, chaos, stylize, no, niji):
+    def func(self, prompt, aspect, chaos, stylize, no, niji):
 
+        if not prompt:
+            null_tensor = torch.empty(0)
+            return (
+                null_tensor, 
+                null_tensor,
+                null_tensor,
+                null_tensor,
+            )
         prompt = self.pack_prompt(prompt, aspect, chaos, stylize, no, niji)
-        url_results = midjouney_async.get_image(prompt, image_index, type="single")
+        url_results = midjouney_async.get_image(prompt, type="single")
         image_list = utils.image_url_to_tensor(url_results)
-        thumbnail = image_list[0]
-        images = image_list[1:]
+        # images = image_list[1:]
 
-        return (json.dumps(url_results, ensure_ascii=False), thumbnail, utils.pack_images(images))
+        return (image_list[1], image_list[2], image_list[3], image_list[4], )
 
 
 
@@ -761,7 +713,15 @@ class MDImagineBatch(MDImagine):
         except Exception as e:
             raise ValueError(f"Could not parse prompts to list: {prompts}")
         prompt_list = [self.pack_prompt(i, aspect, chaos, stylize, no, niji) for i in prompt_list if i]
+        if not prompt_list:
+            print("error: prompt list is empty in MDImagineBatch！！！")
+            return (
+                "[]",
+                torch.empty(0),
+                torch.empty(0),
+            )
         url_results = midjouney_async.get_image(prompt_list, image_index, type="batch")
+        
         thumbnail_list = utils.image_url_to_tensor(url_results[0])
         images = utils.image_url_to_tensor(url_results[1:])
 
@@ -783,6 +743,7 @@ class ShowImageByUrl(Base):
         url_list = url.split(",")
         url_list = [i.strip() for i in url_list]
         url_list = url_list[:1]
+        print(f"ShowImageByUrl: {url_list}")
         results = utils.image_url_to_tensor(url_list)
         
         return results[:1]
@@ -808,3 +769,4 @@ class ShowImageByUrlBatch(Base):
         s = utils.pack_images(results)
         
         return [s]
+
