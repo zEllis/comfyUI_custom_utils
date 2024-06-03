@@ -827,7 +827,7 @@
       ],
       "title": "复制左边的提示词到这里",
       "properties": {
-        "Node name for S&R": "Text"
+        "Node name for S&R": "bfText"
       },
       "widgets_values": [
         "fluffy calico kitty playing with yarn, vibrant colors, soft lighting, cozy home setting"

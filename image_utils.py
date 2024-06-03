@@ -615,8 +615,10 @@ class ExpandPromotBatch(Base):
 
 class MDImagine(Base):
     # 使用midjourney 生成图像， 默认选第三张; 建议使用
-    RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE", "IMAGE")
+    RETURN_TYPES = ("STRING", "IMAGE", "IMAGE", "IMAGE", "IMAGE", "IMAGE")
     RETURN_NAMES = (
+        "url_results",
+        "thumbnail",
         "img1",
         "img2",
         "img3",
@@ -675,9 +677,13 @@ class MDImagine(Base):
         prompt = self.pack_prompt(prompt, aspect, chaos, stylize, no, niji)
         url_results = midjouney_async.get_image(prompt, type="single")
         image_list = utils.image_url_to_tensor(url_results)
-        # images = image_list[1:]
 
-        return (image_list[1], image_list[2], image_list[3], image_list[4], )
+        print(f"MDImagine, image_list length: {len(image_list)}")
+        return (
+                ",".join(url_results),
+                image_list[0],
+                image_list[1], image_list[2], image_list[3], image_list[4], 
+            )
 
 
 
@@ -740,6 +746,7 @@ class ShowImageByUrl(Base):
         }
 
     def func(self, url):
+        print(f"start ShowImageByUrl: {url}")
         url_list = url.split(",")
         url_list = [i.strip() for i in url_list]
         url_list = url_list[:1]
@@ -768,5 +775,5 @@ class ShowImageByUrlBatch(Base):
 
         s = utils.pack_images(results)
         
-        return [s]
+        return [s,]
 

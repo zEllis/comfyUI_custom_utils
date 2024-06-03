@@ -53,7 +53,7 @@ class ToString(Tools):
         return {"ui": {"text": [out]}, "result": (ANY, out)}
 
 
-class Text(Tools):
+class bfText(Tools):
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("STRING",)
 

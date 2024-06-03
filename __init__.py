@@ -3,10 +3,6 @@ from .note import *
 from .base_node import *
 from .image import *
 
-# NODE_CLASS_MAPPINGS = {
-#      "ShowImageInfo": ShowImageInfo,
-#      "ShowText": ShowText
-#      }
 
 NODE_CLASS_MAPPINGS = {
     "ShowImageInfo": ShowImageInfo,
@@ -25,7 +21,7 @@ NODE_CLASS_MAPPINGS = {
     "ShowImageByUrlBatch": ShowImageByUrlBatch,
 
     # tools
-    "Text": Text,
+    "bfText": bfText,
     "ToString": ToString,
 
     # image
