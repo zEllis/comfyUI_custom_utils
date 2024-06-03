@@ -669,6 +669,8 @@ class MDImagine(Base):
         if not prompt:
             null_tensor = torch.empty(0)
             return (
+                "",
+                null_tensor,
                 null_tensor, 
                 null_tensor,
                 null_tensor,
