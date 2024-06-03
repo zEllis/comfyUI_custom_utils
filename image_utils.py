@@ -736,7 +736,7 @@ class MDImagineBatch(MDImagine):
         return (json.dumps(url_results, ensure_ascii=False), utils.pack_images(thumbnail_list), utils.pack_images(images))
 
 
-class ShowImageByUrl(Base):
+class GetImageByUrl(Base):
     RETURN_TYPES = ("IMAGE",)
 
     @classmethod

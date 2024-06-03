@@ -17,8 +17,8 @@ NODE_CLASS_MAPPINGS = {
     "ExpandPromotBatch": ExpandPromotBatch,
     "MDImagine": MDImagine,
     "MDImagineBatch": MDImagineBatch,
-    "ShowImageByUrl": ShowImageByUrl,
-    "ShowImageByUrlBatch": ShowImageByUrlBatch,
+    "GetImageByUrl": GetImageByUrl,
+    # "ShowImageByUrlBatch": ShowImageByUrlBatch,
 
     # tools
     "bfText": bfText,
