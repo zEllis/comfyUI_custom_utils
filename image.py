@@ -1,3 +1,4 @@
+import datetime
 import json
 import numpy as np
 import os
@@ -46,6 +47,9 @@ class bfSaveImage(ImageNode):
     OUTPUT_NODE = True
     def func(self, images, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
 
+        # 需要对日期格式做一下处理
+        filename_prefix = filename_prefix.replace("%date:yyyy-MM-dd%", datetime.datetime.now().date().isoformat())
+        
         return_empty_image = self.check_empty_image(images)
         if return_empty_image is not None:
             return (return_empty_image, )

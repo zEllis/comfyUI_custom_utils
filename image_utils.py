@@ -743,39 +743,42 @@ class ShowImageByUrl(Base):
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "url": ("STRING", {"default": "", "multiline": True}),
+                "url": ("STRING", {"default": "多个地址用逗号分割", "multiline": True, "dynamicPrompts": False}),
             },
+            "optional":{
+                    "seed": (ANY,  {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
+                }
         }
 
     def func(self, url):
         print(f"start ShowImageByUrl: {url}")
         url_list = url.split(",")
         url_list = [i.strip() for i in url_list]
-        url_list = url_list[:1]
+        # url_list = url_list[:1]
         print(f"ShowImageByUrl: {url_list}")
         results = utils.image_url_to_tensor(url_list)
         
         return results[:1]
 
-class ShowImageByUrlBatch(Base):
-    RETURN_TYPES = ("IMAGE",)
+# class ShowImageByUrlBatch(Base):
+#     RETURN_TYPES = ("IMAGE",)
 
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "url": ("STRING", {"default": "", "multiline": True}),
-            },
-        }
+#     @classmethod
+#     def INPUT_TYPES(cls):
+#         return {
+#             "required": {
+#                 "url": ("STRING", {"default": "", "multiline": True}),
+#             },
+#         }
 
-    def func(self, url):
-        url_list = url.split(",")
-        url_list = [i.strip() for i in url_list]
-        results = utils.image_url_to_tensor(url_list)
+#     def func(self, url):
+#         url_list = url.split(",")
+#         url_list = [i.strip() for i in url_list]
+#         results = utils.image_url_to_tensor(url_list)
         
-        print(f"ShowImageByUrl, len(results): {len(results)}")
+#         print(f"ShowImageByUrl, len(results): {len(results)}")
 
-        s = utils.pack_images(results)
+#         s = utils.pack_images(results)
         
-        return [s,]
+#         return [s,]
 
