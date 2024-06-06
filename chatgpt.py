@@ -4,7 +4,6 @@ import aiohttp
 import requests
 import json
 from .config import Config
-import gevent
 
 default_md_promt = """
 I'd like you to help me create Midjourney prompts. Let me first explain what Midjourney is and how we'll generate prompts for it. We'll also go through 20 examples to ensure you understand.

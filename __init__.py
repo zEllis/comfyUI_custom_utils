@@ -23,6 +23,7 @@ NODE_CLASS_MAPPINGS = {
     # tools
     "bfText": bfText,
     "ToString": ToString,
+    "DisplayText": DisplayText,
 
     # image
     "bfSaveImage": bfSaveImage,
