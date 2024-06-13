@@ -89,10 +89,3 @@ class DisplayText(Tools):
 
     def func(self, text, prompt=None, extra_pnginfo=None):
         return {"ui": {"string": [text,]}, "result": (text,)}
-
-
-onnxruntime
-google.generativeai
-'exllamav2'
-'dynamicprompts'
-'rembg'
