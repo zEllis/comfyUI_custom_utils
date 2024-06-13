@@ -21,7 +21,7 @@ NODE_CLASS_MAPPINGS = {
     # "ShowImageByUrlBatch": ShowImageByUrlBatch,
 
     # tools
-    "bfText": bfText,
+    "bfInsertText": bfText,
     "ToString": ToString,
     "DisplayText": DisplayText,
 
