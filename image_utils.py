@@ -573,13 +573,14 @@ class ExpandPromot(Base):
             "required": {
                 "prompt_type": (["MD", "SD"],),
                 "prompt": ("STRING", {"default": "1girl", "forceInput": True}),
+                "guide_prompt": ("STRING", {"default": "", "multiline": True, "forceInput": False}),
             },
             # "optional": {"prompt": ("STRING",)},
         }
 
-    def func(self, prompt_type, prompt):
+    def func(self, prompt_type, prompt, guide_prompt=""):
         rich_prompt = open_ai_client.expand_prompt(
-            user_prompt=prompt, prompt_type=prompt_type
+            user_prompt=prompt, prompt_type=prompt_type, prompt=guide_prompt
         )
         return (rich_prompt,)
 
@@ -594,10 +595,11 @@ class ExpandPromotBatch(Base):
             "required": {
                 "prompt_type": (["MD", "SD"],),
                 "prompt_list_json": ("STRING", {"default": "", "forceInput": True}),
+                "guide_prompt": ("STRING", {"default": "", "multiline": True, "forceInput": False}),
             },
         }
 
-    def func(self, prompt_type, prompt_list_json):
+    def func(self, prompt_type, prompt_list_json, guide_prompt=""):
         try:
             prompt_list = json.loads(prompt_list_json)
             print(f"prompt_list:{prompt_list}")
@@ -606,7 +608,7 @@ class ExpandPromotBatch(Base):
         if not isinstance(prompt_list, list):
             raise ValueError("prompt_list must be a list")
         rich_prompt_list = open_ai_client_async.expand_prompt(
-            prompt_list, prompt_type=prompt_type
+            prompt_list, prompt_type=prompt_type, prompt=guide_prompt
         )
         rich_prompt_list = [i for i in rich_prompt_list if i]
         print(f"rich_prompt_list:{rich_prompt_list}")

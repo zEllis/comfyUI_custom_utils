@@ -90,6 +90,10 @@ class OpenAIClient(object):
 				prompt = default_md_promt
 			elif prompt_type == "SD":
 				prompt = default_sd_prompt
+
+		else:
+			prompt += 'Your task is to output json, whose keys is "prompt", value is the whole prompt, only one response is fine. \
+						The following is the short idea I ask you, please output according to the above rules:'
 		headers = {
 			"Content-Type": "application/json",
 			"Authorization": "Bearer {}".format(self.api_key),
